@@ -829,8 +829,9 @@ void BentelKyo::publish_binary_sensors_() {
 
     // Log state changes when log_trace is enabled
     if (this->log_trace_ && state != entry.sensor->state) {
+      char name_buf[ENTITY_NAME_BUF_SIZE];
       ESP_LOGI(TAG, "State change: %s [idx=%d] %s -> %s",
-               entry.sensor->get_name().c_str(), idx,
+               entry.sensor->get_name_to(name_buf).c_str(), idx,
                entry.sensor->state ? "ON" : "OFF",
                state ? "ON" : "OFF");
     }
